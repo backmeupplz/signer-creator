@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import {
   KEY_GATEWAY_ADDRESS,
 } from '@farcaster/hub-nodejs'
+import changePfp from './changePfp';
 
 const app = new Hono();
 
@@ -93,6 +94,29 @@ app.get('/signature', async (c) => {
     );
   }
 });
+
+app.post('/change-pfp', async (c) => {
+  try {
+    const body = await c.req.json();
+    const { privateKey, pfp, fid } = body;
+    if (!privateKey || !pfp || !fid) {
+      return c.json(
+        { error: 'Missing one or more required fields: privateKey, pfp, fid' },
+        400
+      );
+    }
+    // Call the changePfp function.
+    await changePfp({ privateKey, pfp, fid });
+    return c.json({ message: 'Profile picture updated successfully.' });
+  } catch (err) {
+    console.error('Error updating profile picture:', err);
+    return c.json(
+      { error: err instanceof Error ? err.message : 'Unknown error' },
+      500
+    );
+  }
+});
+
 
 app.get('*', (c) => c.text('Not Found', 404));
 
