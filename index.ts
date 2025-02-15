@@ -81,7 +81,7 @@ app.get('/signature', async (c) => {
       primaryType: 'SignedKeyRequest',
       message: {
         requestFid: BigInt(appFid),
-        key: fromHex(key as `0x${string}`, 'bytes'),
+        key: key,
         deadline: BigInt(deadline),
       },
     });
