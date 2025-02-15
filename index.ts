@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import { mnemonicToAccount } from 'viem/accounts';
 import { cors } from "hono/cors";
-import { fromHex } from 'viem';
 import {
   KEY_GATEWAY_ADDRESS,
 } from '@farcaster/hub-nodejs'
@@ -52,7 +51,8 @@ app.get('/signature', async (c) => {
   }
 
   // Retrieve required environment variables.
-  const appFid = process.env.APP_FID;
+  // const appFid = process.env.APP_FID;
+  const appFid = 123;
   const mnemonic = process.env.APP_MNEMONIC;
   if (!appFid || !mnemonic) {
     return c.json(
