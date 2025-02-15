@@ -9,6 +9,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@farcaster/hub-nodejs": "^0.12.7",
     "@noble/ed25519": "^2.2.3",
     "hono": "^4.7.1",
     "viem": "^2.23.2"
