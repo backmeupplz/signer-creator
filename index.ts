@@ -51,8 +51,7 @@ app.get('/signature', async (c) => {
   }
 
   // Retrieve required environment variables.
-  // const appFid = process.env.APP_FID;
-  const appFid = 123;
+  const appFid = process.env.APP_FID;
   const mnemonic = process.env.APP_MNEMONIC;
   if (!appFid || !mnemonic) {
     return c.json(
@@ -66,9 +65,9 @@ app.get('/signature', async (c) => {
 
   console.log(
     'Signing key request:',
-    `appFid: ${appFid}`,
+    `appFid: ${BigInt(appFid)}`,
     `key: ${key}`,
-    `deadline: ${deadline}`,
+    `deadline: ${BigInt(deadline)}`,
   )
 
   try {
