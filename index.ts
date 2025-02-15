@@ -38,6 +38,7 @@ app.get('/signature', async (c) => {
       400
     );
   }
+  console.log(`Received request to sign key: ${key} with deadline: ${deadline}`);
 
   // Validate that the key is a valid 32-byte hex public key.
   if (!/^0x[0-9a-fA-F]{64}$/.test(key)) {
