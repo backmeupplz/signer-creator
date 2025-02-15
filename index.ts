@@ -61,6 +61,13 @@ app.get('/signature', async (c) => {
   // Create an account from the mnemonic.
   const account = mnemonicToAccount(mnemonic);
 
+  console.log(
+    'Signing key request:',
+    `appFid: ${appFid}`,
+    `key: ${key}`,
+    `deadline: ${deadline}`,
+  )
+
   try {
     // Generate the signature using EIP-712 typed data.
     const signature = await account.signTypedData({
