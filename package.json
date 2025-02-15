@@ -1,0 +1,16 @@
+{
+  "name": "signer-creator",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@noble/ed25519": "^2.2.3",
+    "hono": "^4.7.1",
+    "viem": "^2.23.2"
+  }
+}
