@@ -26,6 +26,13 @@ app.get('/signature', async (c) => {
       400
     );
   }
+  const deadline = c.req.query('deadline');
+  if (!deadline) {
+    return c.json(
+      { error: "Missing 'deadline' query parameter." },
+      400
+    );
+  }
 
   // Validate that the key is a valid 32-byte hex public key.
   if (!/^0x[0-9a-fA-F]{64}$/.test(key)) {
@@ -47,9 +54,6 @@ app.get('/signature', async (c) => {
 
   // Create an account from the mnemonic.
   const account = mnemonicToAccount(mnemonic);
-
-  // Set the deadline to 1 day (86400 seconds) from now.
-  const deadline = Math.floor(Date.now() / 1000) + 86400;
 
   try {
     // Generate the signature using EIP-712 typed data.
