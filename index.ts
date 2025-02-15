@@ -1,7 +1,11 @@
 import { Hono } from 'hono';
 import { mnemonicToAccount } from 'viem/accounts';
+import { cors } from "hono/cors";
 
 const app = new Hono();
+
+// Enable CORS for all routes (allow any origin)
+app.use("*", cors());
 
 // EIP-712 Domain and Types as defined in the Farcaster docs.
 const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
