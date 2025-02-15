@@ -1,9 +1,6 @@
 import { Hono } from 'hono';
 import { mnemonicToAccount } from 'viem/accounts';
 import { cors } from "hono/cors";
-import {
-  KEY_GATEWAY_ADDRESS,
-} from '@farcaster/hub-nodejs'
 import changePfp from './changePfp';
 
 const app = new Hono();
@@ -16,7 +13,7 @@ const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
   name: 'Farcaster SignedKeyRequestValidator',
   version: '1',
   chainId: 10,
-  verifyingContract: KEY_GATEWAY_ADDRESS,
+  verifyingContract: "0x00000000fc700472606ed4fa22623acf62c60553" as `0x${string}`,
 };
 
 const SIGNED_KEY_REQUEST_TYPE = [
