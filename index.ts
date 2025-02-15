@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { mnemonicToAccount } from 'viem/accounts';
 import { cors } from "hono/cors";
+import { fromHex } from 'viem';
 
 const app = new Hono();
 
@@ -69,7 +70,7 @@ app.get('/signature', async (c) => {
       primaryType: 'SignedKeyRequest',
       message: {
         requestFid: BigInt(appFid),
-        key,
+        key: fromHex(key as `0x${string}`, 'bytes'),
         deadline: BigInt(deadline),
       },
     });
